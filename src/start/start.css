@@ -1,0 +1,215 @@
+
+.playerUpper {
+  margin: 35px;
+  display: flex;
+  flex-direction: column;
+}
+.keyboardIcon
+{
+  margin-top: 6vh;
+  width: 16%;
+}
+.mainLabel
+{
+  color: #ff5155;
+  font-size: 30px;
+  font-family: inherit
+}
+.personIcon
+{
+  margin-right:3vh;
+  width: 3%;
+}
+.scoreDetails
+{
+  
+}
+.mainDiv
+{
+  display: inline-block;
+  width: 100%;
+}
+.brand-left {
+  position: relative;
+  float: left;
+  width: 730px;
+}
+
+.brand-right {
+  text-align: right;
+  margin-right: 34px;
+
+}
+
+
+
+.align-game-center 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.display-type-text
+{
+  color: whitesmoke;
+  font-size: 54px;
+  font-family: inherit;
+  margin: 18px;
+}
+
+.blue
+{
+  color: blueviolet;
+}
+
+.green
+{
+  color: green;
+}
+
+.center
+{
+ text-align: center
+}
+.highScoreText
+{
+  font: 10;
+  color: whitesmoke
+}
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: #555;
+}
+
+
+.align-scoreboard 
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.score-div {
+  overflow-y: scroll;
+  float: left;
+  border: 0.4px solid #ff5155;
+  border-radius: 12px;
+  margin-left: 24px;
+  width: 249px;
+  margin-right: 190px;
+  height: 60vh;
+  display: in
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.score-board-label
+{
+  font-size: 23px;
+  color: #ff5155
+}
+.score-board-value
+{
+  
+  font-size: 16px;
+  margin: 8px;
+  color: whitesmoke
+}
+.personal-best-text
+{
+  font-size: 9px;
+  color: #ff5155
+}
+.reloadIcon
+{
+  height: 24px;
+}
+.crossIcon
+{
+  margin-right:1vh;
+  width: 3%;
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 5px;
+  left: 5px;
+}
+.end-game
+{
+  margin-top: 10px
+}
+
+
+
+
+
+/* -----timer css ---- */
+
+.timer-align
+{
+  /* margin: auto;
+  width: 16%;
+  padding: 38px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  
+}
+/* Sets the containers height and width */
+.base-timer {
+  position: relative;
+  height: 175px;
+  width: 175px;
+}
+
+/* Removes SVG styling that would hide the time label */
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+/* The SVG path that displays the timer's progress */
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__label {
+  position: absolute;
+  width: 167px;
+  height: 167px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  color: whitesmoke;
+}
+
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.red {
+  color: #ff5155;
+}
+

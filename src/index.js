@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Start from './start/start';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 
+const routing = (
+  <Router>
+    <div>
+      <Route exact  path="/" component={App} />
+      <Route path="/start" component={Start} />
+    </div>
+  </Router>
+)
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
+  
   document.getElementById('root')
 );
 
