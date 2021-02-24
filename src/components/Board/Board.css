@@ -1,0 +1,42 @@
+.board {
+    width: 15vw;
+    min-width: 250px;
+    height: 60vh;
+    padding: max(15px, 1.6vw);
+    box-sizing: border-box;
+    color: var(--color-laser-corps-gradient);
+    overflow: auto;
+}
+
+.board__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: clamp( 24px, 1.3vw, 1.3vw );
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    letter-spacing: normal;
+}
+
+.board__scores {
+    color: var( --color-white );
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    font-size: clamp( 24px, 1.3vw, 1.3vw );
+}
+
+.score {
+    margin-top: 1.04vw;
+}
+
+.board__best {
+    font-size: clamp(11px, 0.78vw, 0.78vw);
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.18;
+    letter-spacing: normal;
+}

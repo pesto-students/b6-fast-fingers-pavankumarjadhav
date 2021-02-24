@@ -1,0 +1,52 @@
+.game-complete {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.game-complete__number {
+    font-size: clamp(40px, 3.6vw, 3.6vw);
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.game-complete__score {
+    font-size: clamp(80px, 6.1vw, 6.1vw);
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    margin-top: 20px;
+}
+
+.game-complete__message {
+    font-size: clamp(30px, 2.7vw, 2.7vw);
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    margin-top: 15px;
+}
+
+.game-complete__button {
+    color: var(--color-laser-corps-gradient);
+    font-size: clamp(30px, 2.7vw, 2.7vw);
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.game-complete__button > img {
+    height: 2.7vw;
+    min-height: 30px;
+    margin-right: 30px;
+}

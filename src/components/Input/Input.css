@@ -1,0 +1,112 @@
+input[type="text"] {
+    background-color: var(--color-beam-catcher-regular);
+    border-radius: 8px;
+    width: 32.39vw;
+    border: none;
+    padding: max(10px, 0.8vw);
+    font-size: clamp(18px, 1.82vw, 1.82vw);
+    box-sizing: border-box;
+    text-transform: uppercase;
+    min-width: 300px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+.custom-select-container {
+    position: relative;
+}
+.custom-select-box {
+    text-align: left;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    width: 32.39vw;
+    min-width: 300px;
+    border: none;
+    padding: max(10px, 0.8vw);
+    font-size: 1.82vw;
+    font-size: clamp(18px, 1.82vw, 1.82vw);
+    border: solid 1px #ffffff;
+    box-sizing: border-box;
+    color: var(--color-beam-catcher-regular);
+    text-transform: uppercase;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background: url("/md-arrow-dropdown.svg") no-repeat right;
+    background-size: max(20px, 3vw);
+    font-family: Arial, Helvetica, sans-serif;
+    height: 3.64vw;
+    min-height: 40px;
+}
+
+.options-container {
+    background-color: var(--color-beam-catcher-regular);
+    color: var(--color-beam-catcher);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 0.83vw;
+    font-size: clamp(16px, 1.3vw, 1.3vw);
+    line-height: 1.2;
+    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.8);
+    position: absolute;
+    width: 90%;
+    left: 2.5%;
+    box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.8);
+    margin: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    list-style: none;
+    text-align: left;
+}
+.options-container__option {
+    margin: 5px;
+    box-sizing: border-box;
+}
+.options-container__option:hover {
+    color: #ffffff;
+    box-shadow: 0 0 10px 100px var(--color-highlight) inset !important;
+    opacity: 0.4;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #053a45;
+}
+
+select {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 8px;
+    width: 32.39vw;
+    min-width: 300px;
+    border: none;
+    padding: max(10px, 0.8vw);
+    font-size: 1.82vw;
+    font-size: clamp(18px, 1.82vw, 1.82vw);
+    border: solid 1px #ffffff;
+    box-sizing: border-box;
+    color: var(--color-beam-catcher-regular);
+    text-transform: uppercase;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background: url("/md-arrow-dropdown.svg") no-repeat right;
+    background-size: 3vw;
+    font-family: "Breamcatcher";
+}
+
+option {
+    background-color: var(--color-beam-catcher-regular);
+    color: var(--color-beam-catcher);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 0.83vw;
+    font-size: clamp(16px, 1.3vw, 1.3vw);
+    line-height: 1.2;
+}
+
+select option:checked,
+select option:hover {
+    box-shadow: 0 0 10px 100px var(--color-highlight) inset !important;
+}
+

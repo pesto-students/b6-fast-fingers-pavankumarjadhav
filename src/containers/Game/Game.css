@@ -1,0 +1,33 @@
+.game {
+    margin-top: max( 20px, 2.6vw );
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap-reverse;
+}
+
+
+.game__area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.game__scores {
+    border-radius: 8px;
+    border: 2px solid var(--color-laser-corps-gradient);
+}
+
+@media (max-width: 960px) {
+    .game__scores {
+        margin: auto;
+        margin-top: 10px;
+    }
+}
+
+.game__occ-space {
+    width: 15vw;
+    min-width: 250px;
+}
