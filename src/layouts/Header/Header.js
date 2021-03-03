@@ -18,7 +18,22 @@ function Header(props) {
         }
     }
 
+    const calculateMinutes = (time) => {
+        return Math.floor( time/ 60);
+    }
+
+    const getSeconds = (time) => {
+        let seconds = time % 60;
+
+        if (seconds < 10) {
+            seconds = `0${seconds}`;
+        }
+
+        return seconds;
+    }
+
     useEffect(() => {
+        console.log("update header");
         updateDifficultyString();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.difficulty])
@@ -43,9 +58,23 @@ function Header(props) {
                 </div>
 
 
-                <div className="header__name">
-                    fast fingers
+
+
+                <div className="header__user-container">
+                    
+                    <div className="header__user">
+                        
+                        <span>fast fingers</span>
+                    </div>
+
+                    <div className="header__difficulty">
+                        
+                        <span>score :</span>
+                        <span>{calculateMinutes(props.score)} : {getSeconds(props.score)}</span>
+                    </div>
+
                 </div>
+
             </div>
 
         </div>

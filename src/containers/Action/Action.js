@@ -13,10 +13,7 @@ function Action(props) {
     const [ word, setWord ] = useState('');
     const [ charArray, setCharArray ] = useState([]);
     const [ difficultyLevel, setDifficultyLevel ] = useState(localStorage.getItem('difficulty'));
-    // const [ reset, setReset ] = useState(false);
     const [ currentTime, setCurrentTime ] = useState(0);
-    // eslint-disable-next-line no-empty-pattern
-    //const [ totalTime, setTotalTime ] = useState(0);
     let totalTime = 0;
 
 
@@ -101,7 +98,6 @@ function Action(props) {
 
     useEffect(() => {
         play();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 

@@ -11,25 +11,51 @@ function Login(props) {
         {level: 'MEDIUM', value: 1.5}, 
         {level: 'HARD', value: 2}
     ];
+  
+const [ userName, setUserName ] = useState('');
+const [ difficultLevel, setDifficultyLevel ] = useState(undefined);
+const [error , setError] = useState('');
 
-    const [ userName, setUserName ] = useState('');
-    const [ difficultLevel, setDifficultyLevel ] = useState(1);
-
-    
-
-    const startGame = (userName, difficultLevel) => {
-        setSession(userName, difficultLevel);
-        props.onUserUpdate(userName);
-        console.log("addToStorage");
-     
+const startGame = (userName, difficultLevel) => {
+        if(userName!=='' && difficultLevel)
+        {
+            setSession(userName, difficultLevel);
+           // createUser(userName, difficultLevel);
+         
+            props.onUserUpdate(userName);
+            console.log("addToStorage",userName,difficultLevel);
+        }
+        else
+        {
+          setError("Please Filled All Data Properly");
+        }
     }
+// const createUser = (userName, difficultLevel) => {
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({name:userName,level:difficultLevel} )
+//     };
+//     fetch("http://localhost:1000/users/createUser",requestOptions)
+//     .then(res => res.json())
+//     .then(
+//       (result) => {
+//        alert(result.status);
+//       },
+//       (error) => {
+//         alert(error);
+//       }
+//     )
+// }
 
     const setSession = (userName, difficultLevel) => {
         localStorage.setItem('userName', userName);
         localStorage.setItem('difficulty', difficultLevel);
     }
-
-
+    const CloseError =()=>
+    {
+        setError("");
+    }
 
     return (
         <div className="login">
@@ -51,11 +77,22 @@ function Login(props) {
                 <div className="login__name-select">
                     <Input type='select' options={options} onInputChange={(value) => setDifficultyLevel(value)} placeholder="Difficulty Level"/>
                 </div>
+               
+                
                 <div className="login__start-button" onClick={() => startGame(userName, difficultLevel)}>
                     <img src={playIcon} alt="play" />
                     <p>Start Game</p>
                 </div>
+                {
+                error ?
+  <div class="alert">
+  <span class="closebtn" onClick={() => CloseError()}>&times;</span> 
+  <strong>Error!</strong>{error}
+</div> :null
+            }
             </div>
+         
+          
             
         </div>
     )

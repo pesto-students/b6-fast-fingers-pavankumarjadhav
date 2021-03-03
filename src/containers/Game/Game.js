@@ -13,6 +13,7 @@ function Game(props) {
     const [bestIndex, setBestIndex ] = useState(0);
     let gameNumber = '1';
     useEffect(() => {
+        console.log("useEffect")
         if(props.stopGame) {
             updateScores();
             setCurrentTimeInPlay(0);
@@ -56,7 +57,7 @@ function Game(props) {
     const updateScores = () => {
         const currentGameNumber = localStorage.getItem('currentGameNumber');
         gameNumber = String(Number(currentGameNumber) + 1);
-        localStorage.setItem(gameNumber, currentTimeInPlay);
+         localStorage.setItem(gameNumber, currentTimeInPlay);
         localStorage.setItem('currentGameNumber', gameNumber);
         createBoardJSON();
     }
@@ -68,7 +69,9 @@ function Game(props) {
     }
 
     const updateCurrentTime = (time) => {
+        
         setCurrentTimeInPlay(time + currentTimeInPlay);
+        props.updateCurrentScore(time + currentTimeInPlay);
     }
     
 
