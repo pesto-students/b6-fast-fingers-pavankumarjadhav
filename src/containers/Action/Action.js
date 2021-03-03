@@ -98,6 +98,7 @@ function Action(props) {
 
     useEffect(() => {
         play();
+          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
