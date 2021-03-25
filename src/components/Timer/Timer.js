@@ -72,7 +72,6 @@ export default class Timer extends Component {
             const seconds = this.getSeconds(this.props.time);
             this.setState({time: this.props.time, timer: this.props.time, minutes, seconds});
             this.start();
-            this.start();
         } 
     }
     

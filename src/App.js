@@ -6,6 +6,7 @@ import Play from './containers/Play/Play';
 function App() {
 
   const [ userName, setUserName ] = useState(localStorage.getItem('userName'));
+  
 
   const updateUserName = (userName) => {
     setUserName(userName);
@@ -14,6 +15,8 @@ function App() {
 
   const componentToRender = Boolean(userName) ? <Play resetSession={() => setUserName(undefined)}/> 
                             : <Login onUserUpdate={(userName) => updateUserName(userName)}/>;
+
+  // const componentToRender = <Login />;
 
   return (
     <section className="App">

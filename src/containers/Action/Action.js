@@ -6,6 +6,8 @@ import easyJson from "../../assets/data/easy.json";
 import mediumJson from "../../assets/data/medium.json";
 import hardJson from "../../assets/data/hard.json";
 import './Action.css';
+import {randomWord} from '../../services/userService'
+
 
 function Action(props) {
 
@@ -18,14 +20,19 @@ function Action(props) {
 
 
     const play = () => {
-        
-        let newWord = getDifferentWord();
-        
-        setWord(newWord);
-        const timer = calculateTimer(newWord, difficultyLevel)
-        setTimer(timer);
-        const charArray = getWordSplits(newWord, '');
-        setCharArray(charArray);
+        randomWord().then( (data) => {
+    
+            console.log(data,'randomWord')
+            let newWord =  data['word'];
+            setWord(newWord);
+            const timer = calculateTimer(newWord, difficultyLevel)
+            setTimer(timer);
+            const charArray = getWordSplits(newWord, '');
+            setCharArray(charArray);
+          },
+          (error) => {
+            alert(error);
+          });
     }
 
 
@@ -55,6 +62,7 @@ function Action(props) {
 
 
     const getWordSplits = (word, wordToCompare) => {
+        console.log(word,wordToCompare);
         return word.split('').map((char, i) => {
            const charToCompare = wordToCompare[i]; 
            if(!charToCompare) {
@@ -67,23 +75,23 @@ function Action(props) {
         })
     }
 
-    const getRandomWord = (json) => {
-        const randomNumber = Math.floor(Math.random() * Math.floor(json.length));
-        const word = json[randomNumber];
-        return word;
+    const getRandomWord = () => {
+       
+      
+       
     }
-
+  
     const getDifferentWord = () => {
         var dataJson;
         
-        if( difficultyLevel >= 1 && difficultyLevel < 1.5) {
-            dataJson=  easyJson;
-        } else if(difficultyLevel >= 1.5 && difficultyLevel < 2) {
-            dataJson=  mediumJson;
-        } else {
-            dataJson=  hardJson;
-        }
-        let newWord = getRandomWord(dataJson);
+        // if( difficultyLevel >= 1 && difficultyLevel < 1.5) {
+        //     dataJson=  easyJson;
+        // } else if(difficultyLevel >= 1.5 && difficultyLevel < 2) {
+        //     dataJson=  mediumJson;
+        // } else {
+        //     dataJson=  hardJson;
+        // }
+        var newWord =  getRandomWord();
         return newWord
     }
 

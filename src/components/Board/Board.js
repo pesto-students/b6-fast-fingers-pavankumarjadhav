@@ -22,14 +22,14 @@ function Board(props) {
             <div className="board__title">score board</div>
             {
                     props.scores ? props.scores.map((value, i) =>  {
-                                        const  minutes = calculateMinutes(value.score);
-                                        const seconds = getSeconds(value.score);
+                                        const  minutes = calculateMinutes(value.score_val);
+                                        const seconds = getSeconds(value.score_val);
                                         return (
-                                            value.best ? <div key={i} className="score">
+                                            value.is_best=="yes" ? <div key={i} className="score">
                                                             <div className="slcore board__best"> PERSONAL BEST </div> 
-                                                            <div  className="board__scores">Game {value.number} : {minutes} : {seconds}</div>
+                                                            <div  className="board__scores">Game {i} : {minutes} : {seconds}</div>
                                                         </div> :
-                                                        <div key={i} className="score board__scores">Game {value.number} : {minutes} : {seconds}</div>
+                                                        <div key={i} className="score board__scores">Game {i} : {minutes} : {seconds}</div>
                                         )
                                     })
                                     :

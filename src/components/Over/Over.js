@@ -24,29 +24,24 @@ function Over(props) {
     }
 
     useEffect(() =>{
-        setNumber(localStorage.getItem('currentGameNumber') || '1');
-        const time = localStorage.getItem(localStorage.getItem('currentGameNumber') || '1');
-        const tmpMinutes = calculateMinutes(time);
-        const tmpSeconds = getSeconds(time);
+          const tmpMinutes = calculateMinutes(props.bestRecord.score_val);
+         const tmpSeconds = getSeconds(props.bestRecord.score_val);
         setMinutes(tmpMinutes);
         setSeconds(tmpSeconds);
-        if(localStorage.getItem('bestIndex')) {
-            setBestScore(localStorage.getItem(Number(localStorage.getItem('bestIndex')) + 1 ))
-        }
-    }, [props.currentTimeInPlay, props.bestIndex])
-
+       
+    }, [props.bestRecord])
 
     return (
         <div className="game-complete">
 
             <div className="game-complete__number">
-                <span>SCORE : </span><span>GAME {number}</span>
+                <span>SCORE : </span><span>GAME {props.gameno}</span>
             </div>
             <div className="game-complete__score">
                 <span>{minutes}: {seconds}</span>
             </div>
             {
-                localStorage.getItem(localStorage.getItem('currentGameNumber') || '1') >= bestScore ?
+               props.bestRecord.is_best=="yes" ?
                         <div className="game-complete__message">
                             New High Score
                         </div>

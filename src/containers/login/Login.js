@@ -1,28 +1,49 @@
 /* eslint-disable no-empty-pattern */
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import keyboard from '../../assets/icons/keyboard-icon.svg';
 import playIcon from '../../assets/icons/play-icon.svg';
 import './Login.css';
 import Input from '../../components/Input/Input';
+import Signup from '../signup/signup';
+import ErrorBox from '../../components/ErrorBox/ErrorBox';
+import {getLevel,storeScore} from '../../services/userService'
 
+let options;
 function Login(props) {
-    const options = [
-        {level: 'EASY', value: 1},
-        {level: 'MEDIUM', value: 1.5}, 
-        {level: 'HARD', value: 2}
-    ];
   
-const [ userName, setUserName ] = useState('');
+const [ userName, setUserName ] = useState(localStorage.getItem('userName'))
+const [ userId, setUserId ] = useState(localStorage.getItem('userId'))
+
+useMemo(() => {
+
+    getLevel().then( (data) => {
+        checkAlreadyLogin();
+        options=data;
+      },
+      (error) => {
+        alert(error);
+      });
+  
+  }, []);
 const [ difficultLevel, setDifficultyLevel ] = useState(undefined);
+const [ login, setLogin ] = useState(false);
 const [error , setError] = useState('');
 
+const checkAlreadyLogin = () => {
+    if(localStorage.setItem('userName', userName))
+    {
+       setLogin(true);
+    }
+   
+}
+
 const startGame = (userName, difficultLevel) => {
+   
         if(userName!=='' && difficultLevel)
         {
             setSession(userName, difficultLevel);
-           // createUser(userName, difficultLevel);
          
-            props.onUserUpdate(userName);
+             props.onUserUpdate(userName);
             console.log("addToStorage",userName,difficultLevel);
         }
         else
@@ -49,14 +70,13 @@ const startGame = (userName, difficultLevel) => {
 // }
 
     const setSession = (userName, difficultLevel) => {
+        console.log(userName,difficultLevel,userId)
         localStorage.setItem('userName', userName);
         localStorage.setItem('difficulty', difficultLevel);
-    }
-    const CloseError =()=>
-    {
-        setError("");
-    }
+        localStorage.setItem('id', userId);
 
+    }
+   
     return (
         <div className="login">
             <div className="login__container">
@@ -71,29 +91,30 @@ const startGame = (userName, difficultLevel) => {
                         <div className="login__brand-name-subtitle-right-line"></div>
                     </div>
                 </div>
+                { login ? 
+                <div>
                 <div className="login__name-input">
-                    <Input type='text' placeholder="Type your Name" onInputChange={(value) => setUserName(value)}/>
+                    <Input type='text' value={userName} placeholder="Type your Name" onInputChange={(value) => setUserName(value)}/>
                 </div>
                 <div className="login__name-select">
                     <Input type='select' options={options} onInputChange={(value) => setDifficultyLevel(value)} placeholder="Difficulty Level"/>
                 </div>
                
                 
-                <div className="login__start-button" onClick={() => startGame(userName, difficultLevel)}>
+                <div className="login__start-button left25" onClick={() => startGame(userName, difficultLevel)}>
                     <img src={playIcon} alt="play" />
                     <p>Start Game</p>
                 </div>
+                </div>
+                 :
+                <Signup userLogin={() => { setLogin(true) } } setUser={(name) => { setUserName(name) } } setId={(id) => { setUserId(id) } } />
+                }
                 {
                 error ?
-  <div class="alert">
-  <span class="closebtn" onClick={() => CloseError()}>&times;</span> 
-  <strong>Error!</strong>{error}
-</div> :null
+  < ErrorBox error={error} setError={() => { setError('') }}  /> :null
             }
             </div>
-         
-          
-            
+      
         </div>
     )
 }

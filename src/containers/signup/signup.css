@@ -1,0 +1,8 @@
+.login__signup-button
+{
+    font-size: clamp( 30px, 2.5vw, 2.5vw);
+    line-height: 1.21;
+    color: var( --color-laser-corps-gradient );
+    align-items: center;
+    cursor: pointer;
+}

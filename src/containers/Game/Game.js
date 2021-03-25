@@ -6,12 +6,11 @@ import Action from "../Action/Action";
 
 import reloadIcon from '../../assets/icons/reload-icon.svg'
 
+import {storeScore,getAllScore} from '../../services/userService'
 function Game(props) {
     const [ isGameOver, setIsGameOver ] = useState(false);
     const [ currentTimeInPlay, setCurrentTimeInPlay ] = useState(0);
     const [ scores, setScores ] = useState(null);
-    const [bestIndex, setBestIndex ] = useState(0);
-    let gameNumber = '1';
     useEffect(() => {
         console.log("useEffect")
         if(props.stopGame) {
@@ -24,28 +23,14 @@ function Game(props) {
     }, [props.stopGame]);
 
     const createBoardJSON = () => {
-        let currentBestScore = 0;
-        let tmpBestIndex = 0;
-        gameNumber = Number(localStorage.getItem('currentGameNumber'));
-        const tmpScores = [];
-        for(let i = 1; i <= gameNumber; i+= 1 ) {
-            const currentScore = localStorage.getItem(String(i));
-            if(Number(currentScore) >= Number(currentBestScore) ) {
-                currentBestScore = Number(currentScore);
-                tmpBestIndex = i - 1;
-                localStorage.setItem('bestIndex', tmpBestIndex);
-                setBestIndex((i-1));
-            }
-            tmpScores.push({
-                best: false,
-                number: Number(i),
-                score: localStorage.getItem(String(i))
-            });
-        }
-        if(tmpScores[tmpBestIndex]) {
-            tmpScores[tmpBestIndex].best = true;
-        }
-        setScores(tmpScores);
+        getAllScore(Number(localStorage.getItem('id')))
+        .then( (data) => {
+           
+            setScores(data.record);
+     },
+          (error) => {
+            alert(error);
+          });
     }
 
 
@@ -55,17 +40,22 @@ function Game(props) {
     }
 
     const updateScores = () => {
-        const currentGameNumber = localStorage.getItem('currentGameNumber');
-        gameNumber = String(Number(currentGameNumber) + 1);
-         localStorage.setItem(gameNumber, currentTimeInPlay);
-        localStorage.setItem('currentGameNumber', gameNumber);
-        createBoardJSON();
+         createBoardJSON();
     }
 
     const gameOver =() => {
-        props.onStopGame();
-        setCurrentTimeInPlay(0);
-        setIsGameOver(true);
+        storeScore(currentTimeInPlay,Number(localStorage.getItem('id'))
+        ,localStorage.getItem('difficulty'))
+        .then( (data) => {
+          
+            props.onStopGame();
+            setCurrentTimeInPlay(0);
+            setIsGameOver(true);
+          },
+          (error) => {
+            alert(error);
+          });
+     
     }
 
     const updateCurrentTime = (time) => {
@@ -87,7 +77,7 @@ function Game(props) {
 
             {
                 isGameOver ? <div className="game__area">
-                                <Over currentTimeInPlay={currentTimeInPlay} bestIndex={bestIndex}/>
+                                <Over gameno={scores.length-1} bestRecord={scores[scores.length-1]}/>
                                 <div className="game-complete__button" onClick={() => play()}>
                                     <img src={reloadIcon} alt="play again" />
                                     PLAY AGAIN
