@@ -14,7 +14,7 @@ router.post('/createUser', function(req, res, next) {
     {
       res.status(500).send({error:'something wrong'})
     }
-    res.json({status:"insert successfully"})
+    res.json({status:"Signup successfully"})
   })
 });
 router.post('/checkLogin', function(req, res, next) {

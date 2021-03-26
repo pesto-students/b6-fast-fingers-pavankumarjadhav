@@ -3,14 +3,17 @@ import React from 'react';
 import './Footer.css';
 
 import crossIcon from '../../assets/icons/cross-icon.svg'
+import { useHistory } from 'react-router-dom';
 
 function Footer(props) {
+    const history = useHistory();
     const onStopGame = () =>  {
         props.onStopGame();
     }
 
     const clearSession = () => {
-        props.onClearSession();
+        history.push('/');
+        //props.onClearSession();
     }
 
     return (

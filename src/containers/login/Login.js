@@ -7,15 +7,15 @@ import Input from '../../components/Input/Input';
 import Signup from '../signup/signup';
 import ErrorBox from '../../components/ErrorBox/ErrorBox';
 import {getLevel,storeScore} from '../../services/userService'
+import { useHistory } from 'react-router-dom';
 
 let options;
 function Login(props) {
   
 const [ userName, setUserName ] = useState(localStorage.getItem('userName'))
-const [ userId, setUserId ] = useState(localStorage.getItem('userId'))
-
+const [ userId, setUserId ] = useState(localStorage.getItem('id'))
+const history = useHistory();
 useMemo(() => {
-
     getLevel().then( (data) => {
         checkAlreadyLogin();
         options=data;
@@ -30,8 +30,9 @@ const [ login, setLogin ] = useState(false);
 const [error , setError] = useState('');
 
 const checkAlreadyLogin = () => {
-    if(localStorage.setItem('userName', userName))
+    if(localStorage.getItem('userName') && localStorage.getItem('id'))
     {
+        console.log("loginnnn")
        setLogin(true);
     }
    
@@ -43,7 +44,9 @@ const startGame = (userName, difficultLevel) => {
         {
             setSession(userName, difficultLevel);
          
-             props.onUserUpdate(userName);
+             //props.onUserUpdate(userName);
+            
+             history.push('/play');
             console.log("addToStorage",userName,difficultLevel);
         }
         else
@@ -51,23 +54,7 @@ const startGame = (userName, difficultLevel) => {
           setError("Please Filled All Data Properly");
         }
     }
-// const createUser = (userName, difficultLevel) => {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({name:userName,level:difficultLevel} )
-//     };
-//     fetch("http://localhost:1000/users/createUser",requestOptions)
-//     .then(res => res.json())
-//     .then(
-//       (result) => {
-//        alert(result.status);
-//       },
-//       (error) => {
-//         alert(error);
-//       }
-//     )
-// }
+
 
     const setSession = (userName, difficultLevel) => {
         console.log(userName,difficultLevel,userId)

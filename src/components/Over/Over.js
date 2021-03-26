@@ -5,10 +5,7 @@ function Over(props) {
 
     const [minutes, setMinutes ] = useState(0);
     const [seconds, setSeconds ] = useState(0);
-    const [number, setNumber] = useState(0);
-    const [bestScore, setBestScore ] = useState(0);
-
-
+    
     const calculateMinutes = (time) => {
         return Math.floor( time/ 60);
     }

@@ -10,7 +10,7 @@ import {storeScore,getAllScore} from '../../services/userService'
 function Game(props) {
     const [ isGameOver, setIsGameOver ] = useState(false);
     const [ currentTimeInPlay, setCurrentTimeInPlay ] = useState(0);
-    const [ scores, setScores ] = useState(null);
+    const [ scores, setScores ] = useState([]);
     useEffect(() => {
         console.log("useEffect")
         if(props.stopGame) {
@@ -25,8 +25,16 @@ function Game(props) {
     const createBoardJSON = () => {
         getAllScore(Number(localStorage.getItem('id')))
         .then( (data) => {
-           
-            setScores(data.record);
+            
+           if(data.status)
+           {
+                setScores(data.record);
+            }
+            else
+            {
+                setScores([{is_best: "yes",score_val: 0}]);
+            }
+            
      },
           (error) => {
             alert(error);
